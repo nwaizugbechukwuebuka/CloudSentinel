@@ -441,8 +441,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 *Demonstrating advanced cloud security engineering, full-stack development expertise, and production-ready software architecture.*
 
 [![GitHub](https://img.shields.io/badge/GitHub-nwaizugbechukwuebuka-181717.svg?style=flat&logo=github)](https://github.com/nwaizugbechukwuebuka)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5.svg?style=flat&logo=linkedin)](https://linkedin.com/in/chukwuebuka-nwaizugbe)
-[![Portfolio](https://img.shields.io/badge/Portfolio-View_Projects-FF5722.svg?style=flat&logo=web)](https://your-portfolio.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5.svg?style=flat&logo=linkedin)](https://www.linkedin.com/in/chukwuebuka-tobiloba-nwaizugbe/)
+
 
 **🛡️ CloudSentinel: Where Security Meets Innovation**
 
