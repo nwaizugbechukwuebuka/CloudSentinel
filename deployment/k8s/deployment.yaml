@@ -1,0 +1,305 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudsentinel-api
+  namespace: cloudsentinel
+  labels:
+    app: cloudsentinel-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloudsentinel-api
+  template:
+    metadata:
+      labels:
+        app: cloudsentinel-api
+    spec:
+      containers:
+      - name: api
+        image: cloudsentinel/api:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: REDIS_URL
+        - name: CELERY_BROKER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: CELERY_BROKER_URL
+        - name: CELERY_RESULT_BACKEND
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: CELERY_RESULT_BACKEND
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudsentinel-worker
+  namespace: cloudsentinel
+  labels:
+    app: cloudsentinel-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudsentinel-worker
+  template:
+    metadata:
+      labels:
+        app: cloudsentinel-worker
+    spec:
+      containers:
+      - name: worker
+        image: cloudsentinel/api:latest
+        command: ["celery", "-A", "src.tasks.scan_tasks", "worker", "--loglevel=info", "--queues=scans,alerts,maintenance"]
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: REDIS_URL
+        - name: CELERY_BROKER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: CELERY_BROKER_URL
+        - name: CELERY_RESULT_BACKEND
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: CELERY_RESULT_BACKEND
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudsentinel-scheduler
+  namespace: cloudsentinel
+  labels:
+    app: cloudsentinel-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudsentinel-scheduler
+  template:
+    metadata:
+      labels:
+        app: cloudsentinel-scheduler
+    spec:
+      containers:
+      - name: scheduler
+        image: cloudsentinel/api:latest
+        command: ["celery", "-A", "src.tasks.scan_tasks", "beat", "--loglevel=info"]
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: REDIS_URL
+        - name: CELERY_BROKER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: CELERY_BROKER_URL
+        - name: CELERY_RESULT_BACKEND
+          valueFrom:
+            configMapKeyRef:
+              name: cloudsentinel-config
+              key: CELERY_RESULT_BACKEND
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudsentinel-frontend
+  namespace: cloudsentinel
+  labels:
+    app: cloudsentinel-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudsentinel-frontend
+  template:
+    metadata:
+      labels:
+        app: cloudsentinel-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: cloudsentinel/frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: cloudsentinel
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15-alpine
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: postgres-config
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        - name: init-sql
+          mountPath: /docker-entrypoint-initdb.d
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+      - name: init-sql
+        configMap:
+          name: postgres-init-sql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: cloudsentinel
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: cloudsentinel
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config

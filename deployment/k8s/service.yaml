@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudsentinel-api
+  namespace: cloudsentinel
+  labels:
+    app: cloudsentinel-api
+spec:
+  selector:
+    app: cloudsentinel-api
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudsentinel-frontend
+  namespace: cloudsentinel
+  labels:
+    app: cloudsentinel-frontend
+spec:
+  selector:
+    app: cloudsentinel-frontend
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: cloudsentinel
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: cloudsentinel
+  labels:
+    app: redis
+spec:
+  selector:
+    app: redis
+  ports:
+  - port: 6379
+    targetPort: 6379
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: cloudsentinel
+  labels:
+    app: nginx
+spec:
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: LoadBalancer

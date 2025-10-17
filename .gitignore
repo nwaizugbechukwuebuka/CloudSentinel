@@ -1,0 +1,520 @@
+# CloudSentinel .gitignore
+# Comprehensive ignore patterns for a professional multi-cloud security scanner
+
+# ========================
+# Python / Backend
+# ========================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Virtual environments
+.env
+.env.*
+.venv
+venv/
+ENV/
+env/
+.virtualenv
+virtualenv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# PyCharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# ========================
+# Node.js / Frontend
+# ========================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# ========================
+# React / Frontend Build
+# ========================
+
+# Production build
+build/
+dist/
+
+# Static files
+static/css/
+static/js/
+static/media/
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ========================
+# Databases
+# ========================
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL
+*.sql
+*.dump
+
+# MySQL
+*.myd
+*.myi
+*.frm
+
+# ========================
+# Cloud Provider Credentials
+# ========================
+
+# AWS
+.aws/
+aws-credentials.json
+credentials
+config
+
+# Azure
+.azure/
+azure-credentials.json
+
+# Google Cloud
+gcp-credentials.json
+service-account*.json
+application_default_credentials.json
+.config/gcloud/
+
+# ========================
+# Security & Secrets
+# ========================
+
+# API Keys and secrets
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+*.jks
+secrets.yaml
+secrets.json
+.secrets/
+
+# Environment files
+.env*
+!.env.example
+
+# Configuration files with secrets
+config/production.json
+config/staging.json
+settings/production.py
+settings/staging.py
+
+# ========================
+# Logs & Reports
+# ========================
+
+# Log files
+*.log
+logs/
+log/
+.log/
+
+# Report outputs
+reports/
+*.pdf
+*.xlsx
+*.csv
+scan-results/
+
+# Temporary scan data
+scan-cache/
+temp-scans/
+
+# ========================
+# Development Tools
+# ========================
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ========================
+# Operating System
+# ========================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+
+# ========================
+# Docker
+# ========================
+
+# Docker files
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# ========================
+# Kubernetes
+# ========================
+
+# Helm charts
+charts/
+*.tgz
+
+# Kubernetes secrets
+*-secret.yaml
+*-secrets.yaml
+
+# ========================
+# CI/CD
+# ========================
+
+# GitHub Actions
+.github/workflows/*.env
+
+# GitLab CI
+.gitlab-ci-local/
+
+# Jenkins
+.jenkins/
+
+# ========================
+# Backup & Archive
+# ========================
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+
+# Archive files
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.rar
+*.7z
+
+# ========================
+# Monitoring & Profiling
+# ========================
+
+# Performance profiling
+*.prof
+*.pstats
+
+# Memory dumps
+*.hprof
+*.dump
+
+# ========================
+# CloudSentinel Specific
+# ========================
+
+# Scan results cache
+.scan-cache/
+scan-results-cache/
+
+# Custom configurations
+config/custom/
+policies/custom/
+
+# User data
+user-data/
+user-uploads/
+
+# Generated reports
+generated-reports/
+report-cache/
+
+# Compliance data
+compliance-cache/
+benchmark-data/
+
+# SSL certificates
+ssl/
+certs/
+certificates/
+
+# Application data
+app-data/
+data/
+
+# Cache directories
+.cache/
+cache/
+
+# Temporary processing files
+processing/
+tmp-processing/
+
+# ========================
+# Documentation Build
+# ========================
+
+# Sphinx documentation
+docs/_build/
+docs/build/
+
+# MkDocs
+site/
+
+# ========================
+# Package Managers
+# ========================
+
+# Poetry
+poetry.lock
+
+# Pipenv
+Pipfile.lock
+
+# PDM
+__pypackages__/
+
+# ========================
+# Testing
+# ========================
+
+# Test artifacts
+test-results/
+.coverage
+coverage.xml
+*.cover
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# ========================
+# Miscellaneous
+# ========================
+
+# Thumbnails
+*.thumb
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# End of CloudSentinel .gitignore
+.ipynb_checkpoints/
+*.ipynb
+
+# Alembic
+alembic.ini.local
