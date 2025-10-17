@@ -649,3 +649,5 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) file for 
 **Built by [Chukwuebuka Tobiloba Nwaizugbe](https://github.com/your-profile)** | **Production-Ready Security Scanner** | **Enterprise-Grade Architecture**
 
 *CloudSentinel: Your trusted partner in cloud security excellence.*
+#   C l o u d S e n t i n e l  
+ 
