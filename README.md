@@ -1,13 +1,16 @@
 # 🛡️ CloudSentinel
-*Enterprise-Grade Multi-Cloud Security Platform*
+## Enterprise Multi-Cloud Security Platform
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://reactjs.org)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](https://docker.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.8+-3776ab.svg?style=flat&logo=python&logoColor=white)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-18+-61dafb.svg?style=flat&logo=react&logoColor=white)](https://reactjs.org)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ed.svg?style=flat&logo=docker&logoColor=white)](https://docker.com)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-Ready-326ce5.svg?style=flat&logo=kubernetes&logoColor=white)](https://kubernetes.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**CloudSentinel** is a sophisticated, production-ready cloud security monitoring and compliance platform engineered for enterprise-scale multi-cloud environments. Built with modern DevSecOps principles, it provides continuous security posture assessment, real-time threat detection, and automated compliance monitoring across AWS, Azure, and Google Cloud Platform.
+> **A production-ready cloud security platform that continuously monitors and secures multi-cloud environments with enterprise-grade compliance and threat detection capabilities.**
+
+CloudSentinel is an advanced cloud security monitoring platform designed for modern enterprises operating across AWS, Azure, and Google Cloud Platform. Built with scalable microservices architecture, it delivers real-time security assessments, compliance monitoring, and automated threat detection to protect critical cloud infrastructure.
 
 ---
 
@@ -649,5 +652,7 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) file for 
 **Built by [Chukwuebuka Tobiloba Nwaizugbe](https://github.com/your-profile)** | **Production-Ready Security Scanner** | **Enterprise-Grade Architecture**
 
 *CloudSentinel: Your trusted partner in cloud security excellence.*
-#   C l o u d S e n t i n e l  
+#   C l o u d S e n t i n e l 
+ 
+ #   C l o u d S e n t i n e l  
  
